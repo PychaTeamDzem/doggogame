@@ -298,3 +298,23 @@ void AMydoggoCharacter::LookUpAtRate(float Rate)
 //	
 //	return false;
 //}
+
+float AMydoggoCharacter::GetDogeAffinity() const
+{
+	return DogeAffinity;
+}
+
+void AMydoggoCharacter::SetDogeAffinity(float AddAffinity)
+{
+	DogeAffinity += AddAffinity;
+}
+
+int AMydoggoCharacter::GetDogeBones() const
+{
+	return DogeBones;
+}
+
+void AMydoggoCharacter::SetDogeBones(int AddBones)
+{
+	DogeBones += AddBones;
+}

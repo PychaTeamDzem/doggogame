@@ -80,6 +80,14 @@ public:
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	//uint32 bUsingMotionControllers : 1;
 
+	/** Affinity with the doge. */
+private:
+
+		float DogeAffinity = 0;
+
+		int DogeBones = 0;
+
+
 protected:
 	
 	///** Fires a projectile. */
@@ -137,6 +145,19 @@ public:
 	FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
+
+	UFUNCTION(BlueprintCallable, Category = "Dog")
+	float GetDogeAffinity() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Dog")
+	void SetDogeAffinity(float AddAffinity);
+	
+	UFUNCTION(BlueprintCallable, Category = "Bones")
+	int GetDogeBones() const;
+
+	UFUNCTION(BlueprintCallable, Category = "Bones")
+	void SetDogeBones(int AddBones);
+
 
 };
 
