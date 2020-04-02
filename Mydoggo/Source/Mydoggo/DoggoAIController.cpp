@@ -19,7 +19,7 @@ ADoggoAIController::ADoggoAIController()
 	Sight_Config->DetectionByAffiliation.bDetectFriendlies = true;
 	Sight_Config->DetectionByAffiliation.bDetectNeutrals = false;
 
-	if ensure(!GetPerceptionComponent()) { return; }
+	if (!GetPerceptionComponent()) { return; }
 	GetPerceptionComponent()->SetDominantSense(*Sight_Config->GetSenseImplementation());
 
 	GetPerceptionComponent()->OnPerceptionUpdated.AddDynamic(this, &ADoggoAIController::OnPawnDetected);
