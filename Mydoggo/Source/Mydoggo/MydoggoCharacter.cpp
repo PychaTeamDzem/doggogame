@@ -118,8 +118,7 @@ void AMydoggoCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// Bind fire event
-	/*PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AMydoggoCharacter::OnFire);
-*/
+	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AMydoggoCharacter::OnFire);
 	//// Enable touchscreen input
 	//EnableTouchscreenMovement(PlayerInputComponent);
 
