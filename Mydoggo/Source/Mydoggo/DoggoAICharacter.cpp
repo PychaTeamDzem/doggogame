@@ -27,7 +27,7 @@ void ADoggoAICharacter::SetRandomNextPOI()
 		return;
 	}
 		
-	int32 RandomNumber = FMath::RandRange(0, POIList.Num());
+	int32 RandomNumber = FMath::RandRange(0, POIList.Num()-1);
 	CurrentPOI =  POIList[RandomNumber];
 }
 

@@ -24,13 +24,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 	FVector	GetPOILocation() const;
 
+	UFUNCTION(BlueprintCallable)
+	void SetRandomNextPOI();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	class ADoggoPOI* GetCurrentPOI() const { return CurrentPOI; }
-
-	void SetRandomNextPOI();
 
 public:
 
