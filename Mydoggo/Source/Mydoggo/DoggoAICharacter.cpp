@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "DoggoAICharacter.h"
-
+#include "DoggoPOI.h"
 #include "GameFramework/CharacterMovementComponent.h"
 // Sets default values
 ADoggoAICharacter::ADoggoAICharacter()
@@ -19,6 +19,19 @@ void ADoggoAICharacter::BeginPlay()
 	
 }
 
+void ADoggoAICharacter::SetRandomNextPOI()
+{
+	if (POIList.Num() <= 0)
+	{
+		CurrentPOI = nullptr;
+		return;
+	}
+		
+	int32 RandomNumber = FMath::RandRange(0, POIList.Num());
+	CurrentPOI =  POIList[RandomNumber];
+}
+
+
 // Called every frame
 void ADoggoAICharacter::Tick(float DeltaTime)
 {
@@ -31,5 +44,12 @@ void ADoggoAICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+FVector ADoggoAICharacter::GetPOILocation() const
+{
+	if(!GetCurrentPOI())
+		return FVector(0.f,0.f,0.f);
+	return GetCurrentPOI()->GetActorLocation();
 }
 
