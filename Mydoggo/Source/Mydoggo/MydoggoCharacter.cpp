@@ -118,8 +118,7 @@ void AMydoggoCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerI
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	// Bind fire event
-	/*PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AMydoggoCharacter::OnFire);
-*/
+	//PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AMydoggoCharacter::OnFire);
 	//// Enable touchscreen input
 	//EnableTouchscreenMovement(PlayerInputComponent);
 
@@ -298,3 +297,23 @@ void AMydoggoCharacter::LookUpAtRate(float Rate)
 //	
 //	return false;
 //}
+
+float AMydoggoCharacter::GetDogeAffinity() const
+{
+	return DogeAffinity;
+}
+
+void AMydoggoCharacter::SetDogeAffinity(float AddAffinity)
+{
+	DogeAffinity += AddAffinity;
+}
+
+int AMydoggoCharacter::GetDogeBones() const
+{
+	return DogeBones;
+}
+
+void AMydoggoCharacter::SetDogeBones(int AddBones)
+{
+	DogeBones += AddBones;
+}
