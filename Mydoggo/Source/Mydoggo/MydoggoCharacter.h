@@ -82,19 +82,14 @@ public:
 
 	/** Affinity with the doge. */
 private:
+		
+		float MaxAfiinity = 100;
 
 		float DogeAffinity = 0;
 
 		int DogeBones = 0;
 
-
 protected:
-	
-	///** Fires a projectile. */
-	//void OnFire();
-
-	///** Resets HMD orientation and position in VR. */
-	//void OnResetVR();
 
 	/** Handles moving forward/backward */
 	void MoveForward(float Val);
@@ -114,31 +109,10 @@ protected:
 	 */
 	void LookUpAtRate(float Rate);
 
-	/*struct TouchData
-	{
-		TouchData() { bIsPressed = false;Location=FVector::ZeroVector;}
-		bool bIsPressed;
-		ETouchIndex::Type FingerIndex;
-		FVector Location;
-		bool bMoved;
-	};
-	void BeginTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
-	void EndTouch(const ETouchIndex::Type FingerIndex, const FVector Location);
-	void TouchUpdate(const ETouchIndex::Type FingerIndex, const FVector Location);
-	TouchData	TouchItem;*/
 	
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
-	// End of APawn interface
-
-	/* 
-	 * Configures input for touchscreen devices if there is a valid touch interface for doing so 
-	 *
-	 * @param	InputComponent	The input component pointer to bind controls to
-	 * @returns true if touch controls were enabled.
-	 */
-	/*bool EnableTouchscreenMovement(UInputComponent* InputComponent);*/
 
 public:
 	/** Returns Mesh1P subobject **/
@@ -147,17 +121,18 @@ public:
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
 	UFUNCTION(BlueprintCallable, Category = "Dog")
-	float GetDogeAffinity() const;
+	float	GetDogeAffinity() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Dog")
-	void SetDogeAffinity(float AddAffinity);
+	void	SetDogeAffinity(float AddAffinity);
 	
 	UFUNCTION(BlueprintCallable, Category = "Bones")
-	int GetDogeBones() const;
+	int		GetDogeBones() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Bones")
-	void SetDogeBones(int AddBones);
+	void	SetDogeBones(int AddBones);
 
-
+	UFUNCTION(BlueprintCallable)
+	float	GetMaxAffinity() const { return MaxAfiinity; }
 };
 
