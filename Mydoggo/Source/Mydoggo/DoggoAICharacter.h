@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+
 #include "DoggoAICharacter.generated.h"
 
 UCLASS()
@@ -14,16 +15,33 @@ class MYDOGGO_API ADoggoAICharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ADoggoAICharacter();
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintCallable)
+	FVector	GetPOILocation() const;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+	class ADoggoPOI* GetCurrentPOI() const { return CurrentPOI; }
+
+	void SetRandomNextPOI();
+
+public:
+
+
+protected:
+	UPROPERTY(EditAnywhere)
+	TArray<class ADoggoPOI*> POIList;
+
+private:
+	class MydoggoCharcter* CachedPlayer =nullptr;
+
+	class ADoggoPOI* CurrentPOI = nullptr;
 
 };
