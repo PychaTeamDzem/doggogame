@@ -305,7 +305,7 @@ float AMydoggoCharacter::GetDogeAffinity() const
 
 void AMydoggoCharacter::SetDogeAffinity(float AddAffinity)
 {
-	DogeAffinity += AddAffinity;
+	DogeAffinity = DogeAffinity + AddAffinity;
 }
 
 int AMydoggoCharacter::GetDogeBones() const
@@ -315,5 +315,5 @@ int AMydoggoCharacter::GetDogeBones() const
 
 void AMydoggoCharacter::SetDogeBones(int AddBones)
 {
-	DogeBones += AddBones;
+	DogeBones = DogeBones + AddBones;
 }
