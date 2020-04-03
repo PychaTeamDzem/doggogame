@@ -17,33 +17,9 @@ class AMydoggoCharacter : public ACharacter
 	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
 	class USkeletalMeshComponent* Mesh1P;
 
-	/** Gun mesh: 1st person view (seen only by self) */
-	//UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	//class USkeletalMeshComponent* FP_Gun;
-
-	/** Location on gun mesh where projectiles should spawn. */
-	//UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	//class USceneComponent* FP_MuzzleLocation;
-
-	/** Gun mesh: VR view (attached to the VR controller directly, no arm, just the actual gun) */
-	//UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	//class USkeletalMeshComponent* VR_Gun;
-
-	/** Location on VR gun mesh where projectiles should spawn. */
-	//UPROPERTY(VisibleDefaultsOnly, Category = Mesh)
-	//class USceneComponent* VR_MuzzleLocation;
-
 	/** First person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FirstPersonCameraComponent;
-
-	///** Motion controller (right hand) */
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	//class UMotionControllerComponent* R_MotionController;
-
-	///** Motion controller (left hand) */
-	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	//class UMotionControllerComponent* L_MotionController;
 
 public:
 	AMydoggoCharacter();
@@ -60,25 +36,6 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
-	///** Gun muzzle's offset from the characters location */
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
-	//FVector GunOffset;
-
-	///** Projectile class to spawn */
-	//UPROPERTY(EditDefaultsOnly, Category=Projectile)
-	//TSubclassOf<class AMydoggoProjectile> ProjectileClass;
-
-	///** Sound to play each time we fire */
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
-	//class USoundBase* FireSound;
-
-	///** AnimMontage to play each time we fire */
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-	//class UAnimMontage* FireAnimation;
-
-	///** Whether to use motion controller location for aiming. */
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-	//uint32 bUsingMotionControllers : 1;
 
 	/** Affinity with the doge. */
 private:
@@ -114,6 +71,7 @@ protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 
+	void SetDoggoCharacter();
 public:
 	/** Returns Mesh1P subobject **/
 	FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
@@ -134,5 +92,21 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	float	GetMaxAffinity() const { return MaxAfiinity; }
+
+	UFUNCTION(BlueprintCallable)
+	class ADoggoAICharacter* GetCachedDoggo() const { return CachedDoggo; }
+
+	UFUNCTION(BlueprintCallable)
+	bool IsHideGameStarted() const { return bHideGameStarted; }
+
+	UFUNCTION(BlueprintCallable)
+	void SetHideGameChanged(bool bNewHideChange);
+
+private:
+	class ADoggoAICharacter* CachedDoggo = nullptr;
+
+	bool bHideGameStarted = false;
+	bool bWashGameStarted = false;
+	bool bLearnGameStarted = false;
 };
 

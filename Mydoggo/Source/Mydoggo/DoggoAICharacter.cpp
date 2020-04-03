@@ -31,6 +31,28 @@ void ADoggoAICharacter::SetRandomNextPOI()
 	CurrentPOI =  POIList[RandomNumber];
 }
 
+void ADoggoAICharacter::SetRandomPOIToHide()
+{
+	if (POIList.Num() <= 0)
+	{
+		CurrentPOI = nullptr;
+		return;
+	}
+	TArray<class ADoggoPOI*> POIWithFootprintsList;
+	for (ADoggoPOI* poi : POIList)
+	{
+		if (poi->IsValidLowLevel() && poi->HasFootprints() )
+			POIWithFootprintsList.Add(poi);
+	}
+	
+	if (POIWithFootprintsList.Num() <= 0)
+		return; 
+
+	int32 RandomNumber = FMath::RandRange(0, POIWithFootprintsList.Num() - 1);
+	
+	POIToHide = POIWithFootprintsList[RandomNumber];
+}
+
 
 // Called every frame
 void ADoggoAICharacter::Tick(float DeltaTime)
@@ -43,7 +65,6 @@ void ADoggoAICharacter::Tick(float DeltaTime)
 void ADoggoAICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 FVector ADoggoAICharacter::GetPOILocation() const
@@ -51,5 +72,12 @@ FVector ADoggoAICharacter::GetPOILocation() const
 	if(!GetCurrentPOI())
 		return FVector(0.f,0.f,0.f);
 	return GetCurrentPOI()->GetActorLocation();
+}
+
+FVector ADoggoAICharacter::GetHidePOILocation() const
+{
+	if (!GetPOIToHide())
+		return FVector(0.f, 0.f, 0.f);
+	return GetPOIToHide()->GetActorLocation();
 }
 

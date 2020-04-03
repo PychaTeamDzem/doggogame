@@ -25,7 +25,13 @@ public:
 	FVector	GetPOILocation() const;
 
 	UFUNCTION(BlueprintCallable)
+	FVector	GetHidePOILocation() const;
+
+	UFUNCTION(BlueprintCallable)
 	void SetRandomNextPOI();
+
+	UFUNCTION(BlueprintCallable)
+	void SetRandomPOIToHide();
 
 protected:
 	// Called when the game starts or when spawned
@@ -33,6 +39,7 @@ protected:
 
 	class ADoggoPOI* GetCurrentPOI() const { return CurrentPOI; }
 
+	class ADoggoPOI* GetPOIToHide() const { return POIToHide;  }
 public:
 
 
@@ -44,5 +51,6 @@ private:
 	class MydoggoCharcter* CachedPlayer =nullptr;
 
 	class ADoggoPOI* CurrentPOI = nullptr;
+	class ADoggoPOI* POIToHide = nullptr;
 
 };

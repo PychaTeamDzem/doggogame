@@ -2,6 +2,7 @@
 
 
 #include "DoggoPOI.h"
+#include "DoggoFootprints.h"
 
 // Sets default values
 ADoggoPOI::ADoggoPOI()
@@ -16,6 +17,22 @@ void ADoggoPOI::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ADoggoPOI::OnHideGameChanged(bool bStarted)
+{
+	bHideGameStarted = bStarted;
+	SetFootprintsVisible();
+}
+
+void ADoggoPOI::SetFootprintsVisible() const
+{
+	for (ADoggoFootprints* doggoFootprint : FootprintList) 
+	{
+		if (!doggoFootprint)
+			continue;
+		doggoFootprint->ChangeVisibility(!bHideGameStarted);
+	}
 }
 
 // Called every frame
