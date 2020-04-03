@@ -31,7 +31,7 @@ void ADoggoPOI::SetFootprintsVisible() const
 	{
 		if (!doggoFootprint)
 			continue;
-		doggoFootprint->ChangeVisibility(!bHideGameStarted);
+		doggoFootprint->ChangeVisibility(bHideGameStarted);
 	}
 }
 
