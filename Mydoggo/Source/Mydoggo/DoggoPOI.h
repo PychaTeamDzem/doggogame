@@ -19,8 +19,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UFUNCTION(BlueprintCallable)
-	void OnHideGameChanged(bool bStarted);
+
 	void SetFootprintsVisible() const;
 
 public:	
@@ -29,6 +28,9 @@ public:
 
 	bool HasFootprints() const { return bHasFootprints; }
 
+	UFUNCTION(BlueprintCallable)
+	void OnHideGameChanged(bool bStarted);
+	
 protected:
 	UPROPERTY(EditAnywhere)
 	TArray<class ADoggoFootprints*> FootprintList;

@@ -33,13 +33,15 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetRandomPOIToHide();
 
+	UFUNCTION(BlueprintCallable)
+	class ADoggoPOI* GetPOIToHide() const { return POIToHide; }
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	class ADoggoPOI* GetCurrentPOI() const { return CurrentPOI; }
 
-	class ADoggoPOI* GetPOIToHide() const { return POIToHide;  }
 public:
 
 
