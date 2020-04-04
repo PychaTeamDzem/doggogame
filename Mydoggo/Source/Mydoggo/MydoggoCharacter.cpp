@@ -125,6 +125,10 @@ float AMydoggoCharacter::GetDogeAffinity() const
 void AMydoggoCharacter::SetDogeAffinity(float AddAffinity)
 {
 	DogeAffinity = DogeAffinity + AddAffinity;
+	if (DogeAffinity > MaxAfiinity)
+	{
+		DogeAffinity = MaxAfiinity;
+	}
 }
 
 int AMydoggoCharacter::GetDogeBones() const

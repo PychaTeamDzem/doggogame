@@ -42,6 +42,7 @@ private:
 		
 		float MaxAfiinity = 100;
 
+		UPROPERTY(EditAnywhere)
 		float DogeAffinity = 0;
 
 		int DogeBones = 0;
