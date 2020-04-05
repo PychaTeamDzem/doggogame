@@ -19,7 +19,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-
 	void SetFootprintsVisible() const;
 
 public:	
@@ -30,6 +29,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void OnHideGameChanged(bool bStarted);
+
+	UFUNCTION(BlueprintCallable)
+	bool IsItBed() const { return bIsBed; }
 	
 protected:
 	UPROPERTY(EditAnywhere)
@@ -38,7 +40,11 @@ protected:
 	UPROPERTY(EditAnywhere)
 	bool bHasFootprints = false;
 
+	UPROPERTY(EditAnywhere)
+	bool bIsBed = false;
+
 private:
 	bool bHideGameStarted = false;
+
 
 };
