@@ -55,6 +55,16 @@ void UGrabber::SetupInputComponent()
 
 FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 {
+
+	DrawDebugLine(
+	GetWorld(),
+	PlayerViewPointLocation,
+	LineTraceEnd,
+	FColor(255, 0, 0),
+	false,
+	0.0f,
+	0.0f,
+	2.0f);
 	FHitResult Hit;
 	FCollisionQueryParams TraceParameters(FName(TEXT("Movable")), false, GetOwner());
 
@@ -72,7 +82,7 @@ FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 void UGrabber::Grab()
 {
 	auto HitResult = GetFirstPhysicsBodyInReach();
-	UPrimitiveComponent* ComponentToGrab = HitResult.GetComponent();
+	auto ComponentToGrab = HitResult.GetComponent();
 
 	if (!PhysicsHandle) 
 		return; 
