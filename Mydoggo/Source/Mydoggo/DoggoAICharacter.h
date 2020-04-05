@@ -36,13 +36,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	class ADoggoPOI* GetPOIToHide() const { return POIToHide; }
 
+	UFUNCTION(BlueprintCallable)
+	class ADoggoPOI* GetCurrentPOI() const { return CurrentPOI; }
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	class ADoggoPOI* GetCurrentPOI() const { return CurrentPOI; }
-
-public:
 
 
 protected:

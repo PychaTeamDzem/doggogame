@@ -145,3 +145,14 @@ void AMydoggoCharacter::SetHideGameChanged(bool bNewHideChange)
 {
 	bHideGameStarted = bNewHideChange;
 }
+
+void AMydoggoCharacter::ChangeHP(int DeltaHP)
+{
+	int32 TempHP = CurrentPlayerHP + DeltaHP;
+	if (TempHP <= 0)
+		bIsDead = true;
+	else if (TempHP > GetMaxHP())
+		TempHP = MaxPlayerHP;
+	else
+		CurrentPlayerHP = TempHP;
+}

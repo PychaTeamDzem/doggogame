@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "Components/StaticMeshComponent.h"
 #include "DoggoFootprints.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 ADoggoFootprints::ADoggoFootprints()
