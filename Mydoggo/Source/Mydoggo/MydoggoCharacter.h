@@ -47,6 +47,9 @@ private:
 
 		int DogeBones = 0;
 
+		int32 CurrentPoints = 0.f;
+		int32 CurrentTime = 0.f;
+
 protected:
 
 	/** Handles moving forward/backward */

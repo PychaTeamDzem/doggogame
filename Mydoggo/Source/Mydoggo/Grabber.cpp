@@ -29,6 +29,15 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	if (PhysicsHandle->GrabbedComponent) {
 		PhysicsHandle->SetTargetLocation(GetReachLineEnd());
 	}
+	DrawDebugLine(
+		GetWorld(),
+		GetReachLineStart(),
+		GetReachLineEnd(),
+		FColor(255, 0, 0),
+		false,
+		0.0f,
+		0.0f,
+		2.0f);
 }
 
 void UGrabber::FindPhysicsComponent() {
@@ -55,16 +64,6 @@ void UGrabber::SetupInputComponent()
 
 FHitResult UGrabber::GetFirstPhysicsBodyInReach()
 {
-
-	DrawDebugLine(
-	GetWorld(),
-	PlayerViewPointLocation,
-	LineTraceEnd,
-	FColor(255, 0, 0),
-	false,
-	0.0f,
-	0.0f,
-	2.0f);
 	FHitResult Hit;
 	FCollisionQueryParams TraceParameters(FName(TEXT("Movable")), false, GetOwner());
 
@@ -87,7 +86,8 @@ void UGrabber::Grab()
 	if (!PhysicsHandle) 
 		return; 
 
-	if (HitResult.GetActor()) {
+	if (HitResult.GetActor()) 
+{
 		PhysicsHandle->GrabComponent(
 			ComponentToGrab,
 			NAME_None,
