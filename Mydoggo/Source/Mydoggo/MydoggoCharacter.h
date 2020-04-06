@@ -47,6 +47,9 @@ private:
 
 		int DogeBones = 0;
 
+		int32 CurrentPoints = 0.f;
+		int32 CurrentTime = 0.f;
+
 protected:
 
 	/** Handles moving forward/backward */
@@ -73,6 +76,8 @@ protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 
 	void SetDoggoCharacter();
+
+	
 public:
 	/** Returns Mesh1P subobject **/
 	FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
@@ -103,11 +108,32 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetHideGameChanged(bool bNewHideChange);
 
+
+	UFUNCTION(BlueprintCallable)
+	int32 GetHP() const {	return CurrentPlayerHP;	}
+
+	UFUNCTION(BlueprintCallable)
+	int32 GetMaxHP() const { return MaxPlayerHP; }
+
+	//DeltaHP positive - restore HP, negative - substract HP
+	UFUNCTION(BlueprintCallable)
+	void ChangeHP(int DeltaHP);
+
+protected:
+
+	UPROPERTY(EditAnywhere)
+	int32 MaxPlayerHP;
+
+	int32 CurrentPlayerHP;
+
+
 private:
 	class ADoggoAICharacter* CachedDoggo = nullptr;
 
 	bool bHideGameStarted = false;
 	bool bWashGameStarted = false;
 	bool bLearnGameStarted = false;
+
+	bool bIsDead = false;
 };
 
